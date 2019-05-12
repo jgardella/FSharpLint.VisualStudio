@@ -1,0 +1,35 @@
+source https://api.nuget.org/v3/index.json
+framework: net461
+
+nuget FSharp.Compiler.Service
+nuget FSharp.Core ~> 4.6.2
+nuget FSharp.ViewModule.Core
+nuget FSharpLint.Core
+
+group vssdklegacy
+    source http://nuget.org/api/v2
+    framework >= net40
+
+    nuget Microsoft.VisualStudio.Shell.Interop.8.0
+    nuget Microsoft.VisualStudio.Shell.Immutable.10.0
+    nuget VSSDK.ComponentModelHost.11
+    nuget VSSDK.DTE
+    nuget VSSDK.DTE.8
+    nuget VSSDK.DTE.10
+    nuget VSSDK.NavigateTo
+    nuget VSSDK.VSLangProj
+
+
+group vssdk
+    source http://nuget.org/api/v2
+    framework >= net45
+
+    nuget Microsoft.VisualStudio.Editor
+    nuget Microsoft.VisualStudio.Language.Intellisense
+    nuget Microsoft.VisualStudio.Language.StandardClassification
+    nuget Microsoft.VisualStudio.Text.UI.Wpf
+    nuget Microsoft.VisualStudio.Threading
+    nuget Microsoft.VisualStudio.Shell.Interop.12.0
+    nuget VSSDK.Shell.12
+    nuget VSSDK.IDE.Deploy.14
+
