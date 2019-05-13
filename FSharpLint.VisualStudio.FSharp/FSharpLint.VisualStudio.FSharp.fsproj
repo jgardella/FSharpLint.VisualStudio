@@ -59,6 +59,7 @@
     <Compile Include="VisualStudioVersion.fs" />
     <Compile Include="EventHandling.fs" />
     <Compile Include="ProjectSystem\OpenDocumentsTracker.fs" />
+    <Compile Include="ProjectSystem\ActiveViewsRegistratorListener.fs" />
     <Compile Include="ProjectSystem\LanguageService.fs" />
     <Compile Include="ProjectSystem\SolutionProvider.fs" />
     <Compile Include="ProjectSystem\ProjectSystem.fs" />

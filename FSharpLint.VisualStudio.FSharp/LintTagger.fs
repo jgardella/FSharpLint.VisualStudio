@@ -27,12 +27,12 @@ type LintTagger(doc: ITextDocument,
 
     let dte = serviceProvider.GetDte()
     let project() = projectFactory.CreateForDocument buffer doc.FilePath
-    let config = 
-        match ConfigurationManagement.loadConfigurationForProject doc.FilePath with
-        | ConfigurationResult.Success config ->
-            Some config
-        | ConfigurationResult.Failure _ ->
-            None
+    let config = None
+        //match ConfigurationManagement.loadConfigurationForProject doc.FilePath with
+        //| ConfigurationResult.Success config ->
+        //    Some config
+        //| ConfigurationResult.Failure _ ->
+        //    None
                             
     let updateAtCaretPosition (CallInUIContext callInUIContext) =
         asyncMaybe {

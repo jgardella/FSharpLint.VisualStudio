@@ -102,12 +102,11 @@ type VSLanguageService
             return! instance.ParseFileInProject(opts, fileName, source)
         }
 
-    member __.ParseAndCheckFileInProject (currentFile: string, projectProvider: IProjectProvider, ?allowStaleResults) =
-        let allowStaleResults = defaultArg allowStaleResults AllowStaleResults.No
+    member __.ParseAndCheckFileInProject (currentFile: string, projectProvider: IProjectProvider) =
         asyncMaybe {
             let! opts = projectProvider.GetProjectCheckerOptions instance |> liftAsync
             let! source = openDocumentsTracker.TryGetDocumentText currentFile
-            return! instance.ParseAndCheckFileInProject(opts, currentFile, source, allowStaleResults) |> liftAsync
+            return! instance.ParseAndCheckFileInProject(opts, currentFile, source) |> liftAsync
         }
 
     member __.GetProjectCheckerOptions (project: IProjectProvider) = project.GetProjectCheckerOptions instance

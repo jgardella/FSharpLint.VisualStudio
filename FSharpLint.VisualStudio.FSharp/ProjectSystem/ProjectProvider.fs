@@ -43,27 +43,6 @@ type internal ProjectProvider
         Debug.Assert(isNotNull fileName && isNotNull currentDir, "Should have a file name for the project.")
         Path.Combine(currentDir, fileName))
     
-    let getSourcesAndFlags = 
-        // Warning! This place is very brittle because of assumption it makes about the underlying structure of F# DTE project
-        // Code below will work in VS2012/VS2013 but compatibility with further versions are not guaranteed
-        let underlyingProjectField = project.GetType().GetField("project", Reflection.instanceNonPublic)
-        let underlyingProject = underlyingProjectField.GetValue(project)
-
-        let getter =
-            match getField with
-            | None ->
-                let sourcesAndFlagsField = underlyingProject.GetType().GetField("sourcesAndFlags", Reflection.instanceNonPublic)
-                let getter = Reflection.precompileFieldGet<option<string[] * string[]>> sourcesAndFlagsField
-                getField <- Some getter
-                getter
-            | Some getter -> getter
-        fun() -> getter underlyingProject 
-
-    let compilerOptions = lazy (
-        match getSourcesAndFlags() with
-        | Some(_, flags) -> flags
-        | _ -> [||])
-
     let getActiveConfigProperty (tag: string) =
         try 
             let prop = project.ConfigurationManager.ActiveConfiguration.Properties.[tag]
@@ -88,11 +67,6 @@ type internal ProjectProvider
                 | _ -> invalidArg "prop" "Unsupported .NET framework version" 
             with :? ArgumentException -> 
                 FSharpTargetFramework.NET_4_6)
-
-    let sourceFiles = lazy (
-        match getSourcesAndFlags() with
-        | Some(sources, _) -> sources
-        | _ -> [||])
 
     let fullOutputPath = lazy (
         maybe {
@@ -132,7 +106,7 @@ type internal ProjectProvider
                 
                 let opts = 
                     languageService.GetProjectCheckerOptions (
-                        projectFileName.Value, sourceFiles.Value, compilerOptions.Value, referencedProjects)
+                        projectFileName.Value, Array.empty, Array.empty, referencedProjects)
   
                 cache := Some opts
                 return opts
@@ -142,8 +116,8 @@ type internal ProjectProvider
           ProjectFile           = projectFileName.Value
           TargetFramework       = targetFramework.Value
           CompilerVersion       = None // This option is only relevant in scripts
-          CompilerOptions       = compilerOptions.Value
-          SourceFiles           = sourceFiles.Value
+          CompilerOptions       = Array.empty
+          SourceFiles           = Array.empty
           FullOutputFilePath    = fullOutputPath.Value
         }
     interface IProjectProvider with

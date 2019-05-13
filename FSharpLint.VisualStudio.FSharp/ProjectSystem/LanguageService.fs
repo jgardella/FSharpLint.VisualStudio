@@ -275,26 +275,12 @@ type LanguageService (?backgroundCompilation: bool, ?projectCacheSize: int, ?fil
         return! checkerAsync (fun x -> x.ParseFileInProject(fileName, src, projectOptions))
     }
 
-  member internal __.TryGetStaleTypedParseResult(fileName:string, options, src, stale)  = 
-    // Try to get recent results from the F# service
-    let res = 
-        match stale with 
-        | AllowStaleResults.MatchingFileName -> checkerInstance.TryGetRecentCheckResultsForFile(fileName, options) 
-        | AllowStaleResults.MatchingSource -> checkerInstance.TryGetRecentCheckResultsForFile(fileName, options, source=src)
-        | AllowStaleResults.No -> None
-    match res with 
-    | Some (untyped,typed,_) when typed.HasFullTypeCheckInfo  -> Some (ParseAndCheckResults(typed, untyped))
-    | _ -> None
-
   /// Parses and checks the given file in the given project under the given configuration. Asynchronously
   /// returns the results of checking the file.
-  member x.ParseAndCheckFileInProject(opts, fileName: string, src, stale) = 
+  member x.ParseAndCheckFileInProject(opts, fileName: string, src) = 
       async { 
-          match x.TryGetStaleTypedParseResult(fileName, opts, src, stale) with
-          | Some results -> return results
-          | None -> 
-              debug "Parsing: Trigger parse (fileName=%s)" fileName
-              return! parseAndCheckFileInProject(fileName, src, opts)
+          debug "Parsing: Trigger parse (fileName=%s)" fileName
+          return! parseAndCheckFileInProject(fileName, src, opts)
       }
 
   member __.InvalidateConfiguration options =
@@ -316,7 +302,7 @@ type LanguageService (?backgroundCompilation: bool, ?projectCacheSize: int, ?fil
 
     member x.GetIdentTooltip (line, colAtEndOfNames, lineStr, names, project: FSharpProjectOptions, file, source) =
         async {
-            let! checkResults = x.ParseAndCheckFileInProject (project, file, source, AllowStaleResults.No)
+            let! checkResults = x.ParseAndCheckFileInProject (project, file, source)
             return! checkResults.GetIdentTooltip (line, colAtEndOfNames, lineStr, names)
         }
 
