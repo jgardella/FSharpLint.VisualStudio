@@ -27,12 +27,12 @@ type LintTagger(doc: ITextDocument,
 
     let dte = serviceProvider.GetDte()
     let project() = projectFactory.CreateForDocument buffer doc.FilePath
-    let config = None
-        //match ConfigurationManagement.loadConfigurationForProject doc.FilePath with
-        //| ConfigurationResult.Success config ->
-        //    Some config
-        //| ConfigurationResult.Failure _ ->
-        //    None
+    let config =
+        match ConfigurationManagement.loadConfigurationForProject doc.FilePath with
+        | ConfigurationResult.Success config ->
+            Some config
+        | ConfigurationResult.Failure _ ->
+            None
                             
     let updateAtCaretPosition (CallInUIContext callInUIContext) =
         asyncMaybe {
@@ -42,9 +42,10 @@ type LintTagger(doc: ITextDocument,
             let! source = openDocumentsTracker.TryGetDocumentText doc.FilePath
             let shouldFileBeIgnored =
                 config
-                |> Option.bind (fun config -> config.IgnoreFiles)
+                |> Option.bind (fun config -> config.ignoreFiles)
                 |> Option.map (fun ignoreFiles ->
-                    IgnoreFiles.shouldFileBeIgnored ignoreFiles.Files doc.FilePath)
+                    let parsedIgnoreFiles = ignoreFiles |> Array.map IgnoreFiles.parseIgnorePath |> List.ofArray
+                    IgnoreFiles.shouldFileBeIgnored parsedIgnoreFiles doc.FilePath)
                 |> Option.defaultValue false
 
             if not shouldFileBeIgnored then

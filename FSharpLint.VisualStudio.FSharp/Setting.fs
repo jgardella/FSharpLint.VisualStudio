@@ -58,7 +58,7 @@ type IGlobalOptions =
 
 type ILintOptions =
     abstract UpdateDirectories: unit -> unit
-    abstract GetConfigurationForDirectory: string -> FSharpLint.Framework.Configuration.Configuration
+    abstract GetConfigurationForDirectory: string -> FSharpLint.Application.ConfigurationManager.Configuration
 
 type IOutliningOptions =
     abstract OpensEnabled: bool with get, set

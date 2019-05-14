@@ -37,7 +37,7 @@ module LintUtils =
             try
                 File.ReadAllText filename |> ConfigurationManagement.loadConfigurationFile |> Some
             with
-                | ConfigurationException(message) ->
+                | ConfigurationManager.ConfigurationException(message) ->
                     Logging.logWarning (fun _ -> sprintf "Failed to load config file %s: %s" filename message)
                     None
                 | e ->
