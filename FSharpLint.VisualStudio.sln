@@ -3,14 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSharpLint.VisualStudio", "FSharpLint.VisualStudio\FSharpLint.VisualStudio.csproj", "{983280F5-B482-43E2-B07D-3A7F5F92E568}"
-EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharpLint.VisualStudio.FSharp", "FSharpLint.VisualStudio.FSharp\FSharpLint.VisualStudio.FSharp.fsproj", "{44061E2C-A354-4C68-B12F-68EED4A8D9EF}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CAD7DC92-ABD5-4825-9448-BF4364D875D1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{5D55690A-D765-4536-92A7-4CEE8F70E1C4}"
 	ProjectSection(SolutionItems) = preProject
 		paket.dependencies = paket.dependencies
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSharpLint.VisualStudio", "FSharpLint.VisualStudio\FSharpLint.VisualStudio.csproj", "{983280F5-B482-43E2-B07D-3A7F5F92E568}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharpLint.VisualStudio.FSharp", "FSharpLint.VisualStudio.FSharp\FSharpLint.VisualStudio.FSharp.fsproj", "{44061E2C-A354-4C68-B12F-68EED4A8D9EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,17 +2,15 @@ FSharp.Compiler.Service
 FSharp.Core
 FSharp.ViewModule.Core
 FSharpLint.Core
-
-group vssdklegacy
-  VSSDK.DTE
-  VSSDK.DTE.10
-  VSSDK.NavigateTo
-  VSSDK.VSLangProj
-  VSSDK.ComponentModelHost.11
-
 group vssdk
-  Microsoft.VisualStudio.Editor
-  Microsoft.VisualStudio.Language.Intellisense
-  Microsoft.VisualStudio.Text.UI.Wpf
-  Microsoft.VisualStudio.Threading
-  VSSDK.Shell.12
+Microsoft.VisualStudio.Editor
+Microsoft.VisualStudio.Language.Intellisense
+Microsoft.VisualStudio.Text.UI.Wpf
+Microsoft.VisualStudio.Threading
+VSSDK.Shell.12
+group vssdklegacy
+VSSDK.DTE
+VSSDK.DTE.10
+VSSDK.NavigateTo
+VSSDK.VSLangProj
+VSSDK.ComponentModelHost.11

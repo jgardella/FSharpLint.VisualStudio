@@ -6,6 +6,7 @@ open System.Diagnostics
 open EnvDTE
 open VSLangProj
 open FSharp.Compiler.SourceCodeServices
+open FSharp.Compiler.Text
 open FSharpLint.VisualStudio
 
 type internal ProjectProvider
@@ -159,7 +160,7 @@ type internal VirtualProjectProvider (source: string, filePath: string, vsVersio
         member __.GetReferencedProjects() = []
         member __.GetAllReferencedProjectFileNames() = []
         member __.GetProjectCheckerOptions languageService =
-            languageService.GetScriptCheckerOptions (filePath, projectFileName, source, compilerVersion)
+            languageService.GetScriptCheckerOptions (filePath, projectFileName, SourceText.ofString source, compilerVersion)
 
 /// An ad-hoc project provider in order to integrate generated signatures into the project system
 type internal SignatureProjectProvider (filePath: string, attachedProject: IProjectProvider) = 

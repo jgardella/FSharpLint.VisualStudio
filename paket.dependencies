@@ -1,10 +1,33 @@
 source https://api.nuget.org/v3/index.json
-framework: net461
+framework: net472
 
 nuget FSharp.Compiler.Service
 nuget FSharp.Core ~> 4.6.2
+nuget FSharp.Json restriction: >= netstandard20
 nuget FSharp.ViewModule.Core
 nuget FSharpLint.Core
+nuget Microsoft.VisualStudio.CoreUtility 15.0.26228 restriction: >= net472
+nuget Microsoft.VisualStudio.Imaging 15.0.26228 restriction: >= net472
+nuget Microsoft.VisualStudio.Imaging.Interop.14.0.DesignTime 14.3.25408 restriction: >= net472
+nuget Microsoft.VisualStudio.OLE.Interop 7.10.6071 restriction: >= net472
+nuget Microsoft.VisualStudio.SDK.Analyzers 15.8.33 restriction: >= net472
+nuget Microsoft.VisualStudio.SDK.EmbedInteropTypes 15.0.10 restriction: >= net472
+nuget Microsoft.VisualStudio.Shell.15.0 15.0.26228 restriction: >= net472
+nuget Microsoft.VisualStudio.Shell.Framework 15.0.26228 restriction: >= net472
+nuget Microsoft.VisualStudio.Shell.Interop 7.10.6071 restriction: >= net472
+nuget Microsoft.VisualStudio.Shell.Interop.10.0 10.0.30319 restriction: >= net472
+nuget Microsoft.VisualStudio.Shell.Interop.11.0 11.0.61030 restriction: >= net472
+nuget Microsoft.VisualStudio.Shell.Interop.12.0 12.0.30110 restriction: >= net472
+nuget Microsoft.VisualStudio.Shell.Interop.14.0.DesignTime 14.3.25407 restriction: >= net472
+nuget Microsoft.VisualStudio.Shell.Interop.8.0 8.0.50727 restriction: >= net472
+nuget Microsoft.VisualStudio.Shell.Interop.9.0 9.0.30729 restriction: >= net472
+nuget Microsoft.VisualStudio.TextManager.Interop 7.10.6070 restriction: >= net472
+nuget Microsoft.VisualStudio.TextManager.Interop.8.0 8.0.50727 restriction: >= net472
+nuget Microsoft.VisualStudio.Threading 15.0.240 restriction: >= net472
+nuget Microsoft.VisualStudio.Threading.Analyzers 15.8.122 restriction: >= net472
+nuget Microsoft.VisualStudio.Utilities 15.0.26228 restriction: >= net472
+nuget Microsoft.VisualStudio.Validation 15.0.82 restriction: >= net472
+nuget Microsoft.VSSDK.BuildTools 16.0.2264 restriction: >= net472
 
 group vssdklegacy
     source http://nuget.org/api/v2
@@ -32,4 +55,3 @@ group vssdk
     nuget Microsoft.VisualStudio.Shell.Interop.12.0
     nuget VSSDK.Shell.12
     nuget VSSDK.IDE.Deploy.14
-

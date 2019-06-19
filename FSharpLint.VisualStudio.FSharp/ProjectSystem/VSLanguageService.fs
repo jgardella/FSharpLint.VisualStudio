@@ -17,6 +17,7 @@ open System
 open System.Collections.Generic
 open System.IO
 open System.Diagnostics
+open FSharp.Compiler.Text
 open FSharp.Compiler.SourceCodeServices
 open FSharp.Compiler.AbstractIL.Internal.Library
 open Microsoft.VisualStudio.Text.Editor
@@ -106,7 +107,7 @@ type VSLanguageService
         asyncMaybe {
             let! opts = projectProvider.GetProjectCheckerOptions instance |> liftAsync
             let! source = openDocumentsTracker.TryGetDocumentText currentFile
-            return! instance.ParseAndCheckFileInProject(opts, currentFile, source) |> liftAsync
+            return! instance.ParseAndCheckFileInProject(opts, currentFile, SourceText.ofString source) |> liftAsync
         }
 
     member __.GetProjectCheckerOptions (project: IProjectProvider) = project.GetProjectCheckerOptions instance
