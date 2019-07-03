@@ -21,4 +21,4 @@ Microsoft.VisualStudio.Utilities
 Microsoft.VisualStudio.Validation
 Microsoft.VSSDK.BuildTools
 FSharp.Core
-FSharp.Json
+Newtonsoft.Json

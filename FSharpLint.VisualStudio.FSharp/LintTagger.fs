@@ -10,6 +10,7 @@ open FSharpLint.Framework.Configuration
 open FSharpLint.VisualStudio
 open FSharpLint.VisualStudio.FSharp.ProjectSystem
 open FSharp.Compiler
+open FSharp.Reflection
 open FSharpLint.Application.ConfigurationManagement
 open FSharpLint.Application.ConfigurationManager
 

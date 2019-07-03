@@ -3,9 +3,8 @@ framework: net472
 
 nuget FSharp.Compiler.Service
 nuget FSharp.Core ~> 4.6.2
-nuget FSharp.Json restriction: >= netstandard20
 nuget FSharp.ViewModule.Core
-nuget FSharpLint.Core
+nuget FSharpLint.Core 0.12.2
 nuget Microsoft.VisualStudio.CoreUtility 15.0.26228 restriction: >= net472
 nuget Microsoft.VisualStudio.Imaging 15.0.26228 restriction: >= net472
 nuget Microsoft.VisualStudio.Imaging.Interop.14.0.DesignTime 14.3.25408 restriction: >= net472
